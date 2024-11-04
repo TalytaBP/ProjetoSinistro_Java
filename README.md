@@ -15,7 +15,7 @@ Projeto Sinistro
 ## 4. Imagens dos diagramas 
 
 ### Diagrama de entidade e relacionamento
-![Projeto Sinistro1](https://github.com/user-attachments/assets/ef56f85d-4409-41c9-840e-0a64c259a7dd)
+![Projeto Sinistro1](https://github.com/user-attachments/assets/d5b36ea9-a35b-4c51-a8fe-9cfb69f60259)
 
 ### Diagrama de classe das entidades
 ![Projeto Sinistro](https://github.com/user-attachments/assets/efe5b673-b72f-456c-b4e3-58128adcc0cb)
