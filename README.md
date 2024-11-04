@@ -1,4 +1,4 @@
-# Projeto-Sinistro---Java
+# Projeto Sinistro_Java
 
 ## 1. Nome da Aplicação
 
