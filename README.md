@@ -18,7 +18,7 @@ Projeto Sinistro
 ![Projeto Sinistro1](https://github.com/user-attachments/assets/d5b36ea9-a35b-4c51-a8fe-9cfb69f60259)
 
 ### Diagrama de classe das entidades
-![Projeto Sinistro](https://github.com/user-attachments/assets/efe5b673-b72f-456c-b4e3-58128adcc0cb)
+![Projeto Sinistro diagrama](https://github.com/user-attachments/assets/e8080e7c-746d-4304-b201-04bfe67efaaf)
 
 ## 5. Link do vídeo
 
