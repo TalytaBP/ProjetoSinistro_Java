@@ -8,7 +8,4 @@ import java.util.UUID;
 
 @Repository
 public interface SintomasRepositorio extends JpaRepository<SintomasRepositorio, UUID> {
-    void add(Link listaDeSintomas);
-
-    UUID getId_sintoma();
 }
