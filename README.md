@@ -53,3 +53,17 @@ Projeto Sinistro
 - [X]  {/usuario}
 - [X]  {/usuario/{id}
 
+## 7. Exemplo de JSON para cadastro de paciente no sistema:
+
+```
+
+{
+  "nm_completo": "Talyta Botelho Perrotti", 
+    "nr_idade": 31,
+    "tp_sexo": "Feminino",
+    "nr_cpf": 42030598608, 
+    "nr_rg": 416890865
+}
+
+```
+
