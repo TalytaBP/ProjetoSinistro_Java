@@ -24,32 +24,32 @@ Projeto Sinistro
 
 
 ## 6. Lista dos endpoints (documentação da API)
-* {/analise_saude_bucal}
-* {/analise_saude_bucal/{id}
-* {/bairro}
-* {/bairro/{id}
-* {/endereco}
-* {/endereco/{id}
-* {estado}
-* {/estado/{id}
-* {/municipio}
-* {/municipio/{id}
-* {/paciente}
-* {/paciente/{id}
-* {/plano}
-* {/plano/{id}
-* {/profissional}
-* {/profissional/{id}
-* {/regiao}
-* {/regiao/{id}
-* {/responsavel_paciente}
-* {/responsavel_paciente/{id}
-* {/resultado}
-* {/resultado/{id}
-* {/telefone}
-* {/telefone/{id}
-* {/tipo_plano}
-* {/tipo_plano/{id}
-* {/usuario}
-* {/usuario/{id}
+- [X]  {/analise_saude_bucal}
+- [X]  {/analise_saude_bucal/{id}
+- [X]  {/bairro}
+- [X]  {/bairro/{id}
+- [X]  {/endereco}
+- [X]  {/endereco/{id}
+- [X]  {estado}
+- [X]  {/estado/{id}
+- [X]  {/municipio}
+- [X]  {/municipio/{id}
+- [X]  {/paciente}
+- [X]  {/paciente/{id}
+- [X]  {/plano}
+- [X]  {/plano/{id}
+- [X]  {/profissional}
+- [X]  {/profissional/{id}
+- [X]  {/regiao}
+- [X]  {/regiao/{id}
+- [X]  {/responsavel_paciente}
+- [X]  {/responsavel_paciente/{id}
+- [X]  {/resultado}
+- [X]  {/resultado/{id}
+- [X]  {/telefone}
+- [X]  {/telefone/{id}
+- [X]  {/tipo_plano}
+- [X]  {/tipo_plano/{id}
+- [X]  {/usuario}
+- [X]  {/usuario/{id}
 
