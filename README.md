@@ -46,8 +46,6 @@ Projeto Sinistro
 * {/responsavel_paciente/{id}
 * {/resultado}
 * {/resultado/{id}
-* {/sintomas}
-* {/sintomas/{id}
 * {/telefone}
 * {/telefone/{id}
 * {/tipo_plano}
