@@ -61,24 +61,12 @@ public class ProfissionalView extends RepresentationModel <ProfissionalView> imp
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ProfissionalView that)) return false;
-        if (!super.equals(o)) return false;
-        return Objects.equals(id_profissional, that.id_profissional) && Objects.equals(especialista, that.especialista) && Objects.equals(nm_completo, that.nm_completo);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_profissional, especialista, nm_completo);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "ProfissionalView{" +
-                "id_profissional=" + id_profissional +
-                ", especialista='" + especialista + '\'' +
-                ", nm_completo='" + nm_completo + '\'' +
-                '}';
+        return super.toString();
     }
 }

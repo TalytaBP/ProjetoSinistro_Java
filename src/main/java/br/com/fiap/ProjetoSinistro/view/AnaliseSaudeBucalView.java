@@ -105,28 +105,12 @@ public class AnaliseSaudeBucalView extends RepresentationModel<AnaliseSaudeBucal
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AnaliseSaudeBucalView that)) return false;
-        if (!super.equals(o)) return false;
-        return Objects.equals(id_scanner, that.id_scanner) && Objects.equals(qualidade_gengiva, that.qualidade_gengiva) && Objects.equals(qualidade_dente, that.qualidade_dente) && Objects.equals(coloracao_gengiva, that.coloracao_gengiva) && Objects.equals(coloracao_dente, that.coloracao_dente) && Objects.equals(sangramento, that.sangramento) && Objects.equals(infeccao, that.infeccao);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_scanner, qualidade_gengiva, qualidade_dente, coloracao_gengiva, coloracao_dente, sangramento, infeccao);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "AnaliseSaudeBucalView{" +
-                "id_scanner=" + id_scanner +
-                ", qualidade_gengiva='" + qualidade_gengiva + '\'' +
-                ", qualidade_dente='" + qualidade_dente + '\'' +
-                ", coloracao_gengiva='" + coloracao_gengiva + '\'' +
-                ", coloracao_dente='" + coloracao_dente + '\'' +
-                ", sangramento='" + sangramento + '\'' +
-                ", infeccao='" + infeccao + '\'' +
-                '}';
+        return super.toString();
     }
 }

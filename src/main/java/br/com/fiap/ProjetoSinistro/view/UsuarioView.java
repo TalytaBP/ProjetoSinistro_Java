@@ -61,25 +61,13 @@ public class UsuarioView extends RepresentationModel <UsuarioView> implements Se
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UsuarioView that)) return false;
-        if (!super.equals(o)) return false;
-        return Objects.equals(id_usuario, that.id_usuario) && Objects.equals(email, that.email) && Objects.equals(senha, that.senha);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_usuario, email, senha);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "UsuarioView{" +
-                "id_usuario=" + id_usuario +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                '}';
+        return super.toString();
     }
 
 }

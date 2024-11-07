@@ -5,7 +5,6 @@ import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.UUID;
 
 @Getter
@@ -50,24 +49,12 @@ public class TipoPlanoView extends RepresentationModel <TipoPlanoView> implement
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        TipoPlanoView that = (TipoPlanoView) o;
-        return Objects.equals(id_tp_plano, that.id_tp_plano) && Objects.equals(nm_plano, that.nm_plano);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_tp_plano, nm_plano);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "TipoPlanoView{" +
-                "id_tp_plano=" + id_tp_plano +
-                ", nm_plano='" + nm_plano + '\'' +
-                '}';
+        return super.toString();
     }
 }

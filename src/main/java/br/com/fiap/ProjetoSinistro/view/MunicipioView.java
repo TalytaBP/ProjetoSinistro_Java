@@ -50,23 +50,12 @@ public class MunicipioView extends RepresentationModel<MunicipioView> implements
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof MunicipioView that)) return false;
-        if (!super.equals(o)) return false;
-        return Objects.equals(id_municipio, that.id_municipio) && Objects.equals(nm_municipio, that.nm_municipio);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_municipio, nm_municipio);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "MunicipioView{" +
-                "id_municipio=" + id_municipio +
-                ", nm_municipio='" + nm_municipio + '\'' +
-                '}';
+        return super.toString();
     }
 }

@@ -82,26 +82,12 @@ public class EnderecoView extends RepresentationModel<EnderecoView> implements S
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof EnderecoView that)) return false;
-        if (!super.equals(o)) return false;
-        return nr_cep == that.nr_cep && nr_complemento == that.nr_complemento && Objects.equals(id_endereco, that.id_endereco) && Objects.equals(nm_logradouro, that.nm_logradouro) && Objects.equals(nm_rua, that.nm_rua);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_endereco, nr_cep, nr_complemento, nm_logradouro, nm_rua);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "EnderecoView{" +
-                "id_endereco=" + id_endereco +
-                ", nr_cep=" + nr_cep +
-                ", nr_complemento=" + nr_complemento +
-                ", nm_logradouro='" + nm_logradouro + '\'' +
-                ", nm_rua='" + nm_rua + '\'' +
-                '}';
+        return super.toString();
     }
 }

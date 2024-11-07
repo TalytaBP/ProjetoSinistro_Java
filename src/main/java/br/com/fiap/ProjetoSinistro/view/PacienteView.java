@@ -95,27 +95,12 @@ public class PacienteView extends RepresentationModel<PacienteView> implements S
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PacienteView that)) return false;
-        if (!super.equals(o)) return false;
-        return nr_idade == that.nr_idade && nr_cpf == that.nr_cpf && nr_rg == that.nr_rg && Objects.equals(id_paciente, that.id_paciente) && Objects.equals(nm_completo, that.nm_completo) && Objects.equals(tp_sexo, that.tp_sexo);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_paciente, nm_completo, nr_idade, tp_sexo, nr_cpf, nr_rg);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "PacienteView{" +
-                "id_paciente=" + id_paciente +
-                ", nm_completo='" + nm_completo + '\'' +
-                ", nr_idade=" + nr_idade +
-                ", tp_sexo='" + tp_sexo + '\'' +
-                ", nr_cpf=" + nr_cpf +
-                ", nr_rg=" + nr_rg +
-                '}';
+        return super.toString();
     }
 }

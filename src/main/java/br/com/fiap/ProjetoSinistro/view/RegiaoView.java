@@ -49,23 +49,12 @@ public class RegiaoView extends RepresentationModel<RegiaoView> implements Seria
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof RegiaoView that)) return false;
-        if (!super.equals(o)) return false;
-        return Objects.equals(id_regiao, that.id_regiao) && Objects.equals(nm_regiao, that.nm_regiao);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_regiao, nm_regiao);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "RegiaoView{" +
-                "id_regiao=" + id_regiao +
-                ", nm_regiao='" + nm_regiao + '\'' +
-                '}';
+        return super.toString();
     }
 }

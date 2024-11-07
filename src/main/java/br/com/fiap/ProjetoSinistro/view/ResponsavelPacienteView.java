@@ -83,26 +83,12 @@ public class ResponsavelPacienteView extends RepresentationModel <ResponsavelPac
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ResponsavelPacienteView that)) return false;
-        if (!super.equals(o)) return false;
-        return nr_cpf == that.nr_cpf && nr_rg == that.nr_rg && Objects.equals(id_responsavel, that.id_responsavel) && Objects.equals(nm_completo, that.nm_completo) && Objects.equals(tp_parentesco, that.tp_parentesco);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_responsavel, nm_completo, nr_cpf, nr_rg, tp_parentesco);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "ResponsavelPacienteView{" +
-                "id_responsavel=" + id_responsavel +
-                ", nm_completo='" + nm_completo + '\'' +
-                ", nr_cpf=" + nr_cpf +
-                ", nr_rg=" + nr_rg +
-                ", tp_parentesco='" + tp_parentesco + '\'' +
-                '}';
+        return super.toString();
     }
 }

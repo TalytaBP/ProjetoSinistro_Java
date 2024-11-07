@@ -61,24 +61,12 @@ public class PlanoView extends RepresentationModel<PlanoView> implements Seriali
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PlanoView planoView)) return false;
-        if (!super.equals(o)) return false;
-        return nr_carteirinha == planoView.nr_carteirinha && Objects.equals(id_plano, planoView.id_plano) && Objects.equals(tp_plano, planoView.tp_plano);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_plano, tp_plano, nr_carteirinha);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "PlanoView{" +
-                "id_plano=" + id_plano +
-                ", tp_plano='" + tp_plano + '\'' +
-                ", nr_carteirinha=" + nr_carteirinha +
-                '}';
+        return super.toString();
     }
 }

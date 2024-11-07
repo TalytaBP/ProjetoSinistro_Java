@@ -62,24 +62,12 @@ public class ResultadoView extends RepresentationModel <ResultadoView> implement
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ResultadoView that)) return false;
-        if (!super.equals(o)) return false;
-        return Objects.equals(id_doenca, that.id_doenca) && Objects.equals(nm_doenca, that.nm_doenca) && Objects.equals(tp_gravidade, that.tp_gravidade);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_doenca, nm_doenca, tp_gravidade);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "ResultadoView{" +
-                "id_doenca=" + id_doenca +
-                ", nm_doenca='" + nm_doenca + '\'' +
-                ", tp_gravidade='" + tp_gravidade + '\'' +
-                '}';
+        return super.toString();
     }
 }

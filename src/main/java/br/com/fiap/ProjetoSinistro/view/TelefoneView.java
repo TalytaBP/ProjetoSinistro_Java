@@ -72,26 +72,12 @@ public class TelefoneView extends RepresentationModel <TelefoneView> implements 
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        TelefoneView that = (TelefoneView) o;
-        return nr_telefone == that.nr_telefone && nr_ddd == that.nr_ddd && Objects.equals(id_telefone, that.id_telefone) && Objects.equals(tp_contato, that.tp_contato);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_telefone, tp_contato, nr_telefone, nr_ddd);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "TelefoneView{" +
-                "id_telefone=" + id_telefone +
-                ", tp_contato='" + tp_contato + '\'' +
-                ", nr_telefone=" + nr_telefone +
-                ", nr_ddd=" + nr_ddd +
-                '}';
+        return super.toString();
     }
 }

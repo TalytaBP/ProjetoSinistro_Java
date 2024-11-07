@@ -50,23 +50,12 @@ public class EstadoView extends RepresentationModel<EstadoView> implements Seria
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof EstadoView that)) return false;
-        if (!super.equals(o)) return false;
-        return Objects.equals(id_estado, that.id_estado) && Objects.equals(nm_estado, that.nm_estado);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_estado, nm_estado);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "EstadoView{" +
-                "id_estado=" + id_estado +
-                ", nm_estado='" + nm_estado + '\'' +
-                '}';
+        return super.toString();
     }
 }

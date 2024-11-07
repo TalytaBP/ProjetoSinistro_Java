@@ -51,23 +51,12 @@ public class BairroView extends RepresentationModel<BairroView> implements Seria
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof BairroView that)) return false;
-        if (!super.equals(o)) return false;
-        return Objects.equals(id_bairro, that.id_bairro) && Objects.equals(nm_bairro, that.nm_bairro);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_bairro, nm_bairro);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "BairroView{" +
-                "id_bairro=" + id_bairro +
-                ", nm_bairro='" + nm_bairro + '\'' +
-                '}';
+        return super.toString();
     }
 }

@@ -40,22 +40,12 @@ public class ConsultorioView extends RepresentationModel<ConsultorioView> implem
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ConsultorioView that)) return false;
-        if (!super.equals(o)) return false;
-        return Objects.equals(id_consultorio, that.id_consultorio);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id_consultorio);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "ConsultorioView{" +
-                "id_consultorio=" + id_consultorio +
-                '}';
+        return super.toString();
     }
 }
