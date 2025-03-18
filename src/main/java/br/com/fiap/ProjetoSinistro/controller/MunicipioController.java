@@ -1,5 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
+import br.com.fiap.ProjetoSinistro.dto.MunicipioDTO;
 import br.com.fiap.ProjetoSinistro.repositorios.MunicipioRepository;
 import br.com.fiap.ProjetoSinistro.view.MunicipioView;
 import jakarta.validation.Valid;
@@ -20,17 +21,17 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class MunicipioController {
 
     @Autowired
-    MunicipioRepository municipioRepositorio;
+    MunicipioRepository municipioRepository;
 
     @PostMapping("/municipio")
-    public ResponseEntity<MunicipioView> saveMunicipio(@RequestBody @Valid MunicipioRecordDto municipioRecordDto) {
+    public ResponseEntity<MunicipioView> saveMunicipio(@RequestBody @Valid MunicipioDTO municipioDTO) {
         var municipioView = new MunicipioView();
-        BeanUtils.copyProperties(municipioRecordDto, municipioView);
-        return ResponseEntity.status(HttpStatus.CREATED).body(municipioRepositorio.save(municipioView));
+        BeanUtils.copyProperties(municipioDTO, municipioView);
+        return ResponseEntity.status(HttpStatus.CREATED).body(municipioRepository.save(municipioView));
     }
     @GetMapping("/municipio")
     public ResponseEntity<List<MunicipioView>> getAllMunicipio(){
-        List<MunicipioView> municipioList = municipioRepositorio.findAll();
+        List<MunicipioView> municipioList = municipioRepository.findAll();
         if (!municipioList.isEmpty()) {
             for (MunicipioView municipio : municipioList) {
                 UUID id = municipio.getId_municipio();
@@ -42,7 +43,7 @@ public class MunicipioController {
     }
     @GetMapping("/municipio/{id}")
     public ResponseEntity<Object> getOneMunicipio(@PathVariable(value = "id") UUID id) {
-        Optional<MunicipioView> municipioO = municipioRepositorio.findById(id);
+        Optional<MunicipioView> municipioO = municipioRepository.findById(id);
         if (municipioO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O municipio não foi encontrado.");
         }
@@ -53,23 +54,23 @@ public class MunicipioController {
         return ResponseEntity.status(HttpStatus.OK).body(municipioO.get());
     }
     @PutMapping("/municipio/{id}")
-    public ResponseEntity<Object> updateMunicipio(@PathVariable(value="id") UUID id, @RequestBody @Valid MunicipioRecordDto municipioRecordDto) {
+    public ResponseEntity<Object> updateMunicipio(@PathVariable(value="id") UUID id, @RequestBody @Valid MunicipioDTO municipioDTO) {
 
-        Optional<MunicipioView> municipioO = municipioRepositorio.findById(id);
+        Optional<MunicipioView> municipioO = municipioRepository.findById(id);
         if (municipioO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O municipio não foi encontrado");
         }
         var MunicipioView = municipioO.get();
-        BeanUtils.copyProperties(municipioRecordDto, MunicipioView);
-        return ResponseEntity.status(HttpStatus.OK).body(municipioRepositorio.save(MunicipioView));
+        BeanUtils.copyProperties(municipioDTO, MunicipioView);
+        return ResponseEntity.status(HttpStatus.OK).body(municipioRepository.save(MunicipioView));
     }
     @DeleteMapping("/municipio/{id}")
     public ResponseEntity<Object> deleteMunicipio(@PathVariable(value = "id") UUID id) {
-        Optional<MunicipioView> municipioO = municipioRepositorio.findById(id);
+        Optional<MunicipioView> municipioO = municipioRepository.findById(id);
         if (municipioO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O municipio não foi encontrado");
         }
-        municipioRepositorio.delete(municipioO.get());
+        municipioRepository.delete(municipioO.get());
         return ResponseEntity.status(HttpStatus.OK).body("o municipio foi deletado com sucesso.");
     }
 

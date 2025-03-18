@@ -1,5 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
+import br.com.fiap.ProjetoSinistro.dto.ResultadoDTO;
 import br.com.fiap.ProjetoSinistro.repositorios.ResultadoRepository;
 import br.com.fiap.ProjetoSinistro.view.ResultadoView;
 import jakarta.validation.Valid;
@@ -20,17 +21,17 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class ResultadoController {
 
     @Autowired
-    ResultadoRepository resultadoRepositorio;
+    ResultadoRepository resultadoRepository;
 
     @PostMapping("/resultado")
-    public ResponseEntity<ResultadoView> saveResultado(@RequestBody @Valid ResultadoRecordDto resultadoRecordDto) {
+    public ResponseEntity<ResultadoView> saveResultado(@RequestBody @Valid ResultadoDTO resultadoDTO) {
         var resultadoView = new ResultadoView();
-        BeanUtils.copyProperties(resultadoRecordDto, resultadoView);
-        return ResponseEntity.status(HttpStatus.CREATED).body(resultadoRepositorio.save(resultadoView));
+        BeanUtils.copyProperties(resultadoDTO, resultadoView);
+        return ResponseEntity.status(HttpStatus.CREATED).body(resultadoRepository.save(resultadoView));
     }
     @GetMapping("/resultado")
     public ResponseEntity<List<ResultadoView>> getAllResultado(){
-        List<ResultadoView> resultadoList = resultadoRepositorio.findAll();
+        List<ResultadoView> resultadoList = resultadoRepository.findAll();
         if (!resultadoList.isEmpty()) {
             for (ResultadoView resultado : resultadoList) {
                 UUID id = resultado.getId_doenca();
@@ -42,7 +43,7 @@ public class ResultadoController {
     }
     @GetMapping("/resultado/{id}")
     public ResponseEntity<Object> getOneResultado(@PathVariable(value = "id") UUID id) {
-        Optional<ResultadoView> resultadoO = resultadoRepositorio.findById(id);
+        Optional<ResultadoView> resultadoO = resultadoRepository.findById(id);
         if (resultadoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O resultado não foi encontrado.");
         }
@@ -53,24 +54,23 @@ public class ResultadoController {
         return ResponseEntity.status(HttpStatus.OK).body(resultadoO.get());
     }
     @PutMapping("/resultado/{id}")
-    public ResponseEntity<Object> updateResultado(@PathVariable(value="id") UUID id, @RequestBody @Valid ResultadoRecordDto ResultadoRecordDto) {
+    public ResponseEntity<Object> updateResultado(@PathVariable(value="id") UUID id, @RequestBody @Valid ResultadoDTO resultadoDTO) {
 
-        Optional<ResultadoView> resultadoO = resultadoRepositorio.findById(id);
+        Optional<ResultadoView> resultadoO = resultadoRepository.findById(id);
         if (resultadoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O resultado não foi encontrado");
         }
         var ResultadoView = resultadoO.get();
-        Object resultadoRecordDto = null;
-        BeanUtils.copyProperties(resultadoRecordDto, ResultadoView);
-        return ResponseEntity.status(HttpStatus.OK).body(resultadoRepositorio.save(ResultadoView));
+        BeanUtils.copyProperties(resultadoDTO, ResultadoView);
+        return ResponseEntity.status(HttpStatus.OK).body(resultadoRepository.save(ResultadoView));
     }
     @DeleteMapping("/resultado/{id}")
     public ResponseEntity<Object> deleteResultado(@PathVariable(value = "id") UUID id) {
-        Optional<ResultadoView> resultadoO = resultadoRepositorio.findById(id);
+        Optional<ResultadoView> resultadoO = resultadoRepository.findById(id);
         if (resultadoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O resultado não foi encontrado");
         }
-        resultadoRepositorio.delete(resultadoO.get());
+        resultadoRepository.delete(resultadoO.get());
         return ResponseEntity.status(HttpStatus.OK).body("O resultado foi deletado com sucesso.");
     }
 }

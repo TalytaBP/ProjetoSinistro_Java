@@ -18,6 +18,7 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
 
+
     private UsuarioDTO convertToDTO(UsuarioView usuarioView) {
         UsuarioDTO dto = new UsuarioDTO();
         dto.setId_usuario(usuarioView.getId_usuario());

@@ -21,17 +21,17 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class BairroController {
 
     @Autowired
-    BairroRepository bairroRepositorio;
+    BairroRepository bairroRepository;
 
     @PostMapping("/bairro")
     public ResponseEntity<BairroView> saveBairro(@RequestBody @Valid BairroDTO bairroDTO) {
         var bairroView = new BairroView();
         BeanUtils.copyProperties(bairroDTO, bairroView);
-        return ResponseEntity.status(HttpStatus.CREATED).body(bairroRepositorio.save(bairroView));
+        return ResponseEntity.status(HttpStatus.CREATED).body(bairroRepository.save(bairroView));
     }
     @GetMapping("/bairro")
     public ResponseEntity<List<BairroView>> getAllBairro(){
-        List<BairroView> bairroList = bairroRepositorio.findAll();
+        List<BairroView> bairroList = bairroRepository.findAll();
         if (!bairroList.isEmpty()) {
             for (BairroView bairro : bairroList) {
                 UUID id = bairro.getId_bairro();
@@ -43,7 +43,7 @@ public class BairroController {
     }
     @GetMapping("/bairro/{id}")
     public ResponseEntity<Object> getOneBairro(@PathVariable(value = "id") UUID id) {
-        Optional<BairroView> bairroO = bairroRepositorio.findById(id);
+        Optional<BairroView> bairroO = bairroRepository.findById(id);
         if (bairroO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O bairro não foi encontrado.");
         }
@@ -56,21 +56,21 @@ public class BairroController {
     @PutMapping("/bairro/{id}")
     public ResponseEntity<Object> updateBairro(@PathVariable(value="id") UUID id, @RequestBody @Valid BairroDTO bairroDTO) {
 
-        Optional<BairroView> bairroO = bairroRepositorio.findById(id);
+        Optional<BairroView> bairroO = bairroRepository.findById(id);
         if (bairroO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O bairro não foi encontrado");
         }
         var BairroView = bairroO.get();
         BeanUtils.copyProperties(bairroDTO, BairroView);
-        return ResponseEntity.status(HttpStatus.OK).body(bairroRepositorio.save(BairroView));
+        return ResponseEntity.status(HttpStatus.OK).body(bairroRepository.save(BairroView));
     }
     @DeleteMapping("/bairro/{id}")
     public ResponseEntity<Object> deleteBairro(@PathVariable(value = "id") UUID id) {
-        Optional<BairroView> bairroO = bairroRepositorio.findById(id);
+        Optional<BairroView> bairroO = bairroRepository.findById(id);
         if (bairroO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O bairro não foi encontrado");
         }
-        bairroRepositorio.delete(bairroO.get());
+        bairroRepository.delete(bairroO.get());
         return ResponseEntity.status(HttpStatus.OK).body("o bairro foi deletado com sucesso.");
     }
 }

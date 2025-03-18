@@ -1,5 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
+import br.com.fiap.ProjetoSinistro.dto.ProfissionalDTO;
 import br.com.fiap.ProjetoSinistro.repositorios.ProfissionalRepository;
 import br.com.fiap.ProjetoSinistro.view.ProfissionalView;
 import jakarta.validation.Valid;
@@ -20,17 +21,17 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class ProfissionalController {
 
     @Autowired
-    ProfissionalRepository profissionalRepositorio;
+    ProfissionalRepository profissionalRepository;
 
     @PostMapping("/profissional")
-    public ResponseEntity<ProfissionalView> saveProfissional(@RequestBody @Valid ProfissionalRecordDto profissionalRecordDto) {
+    public ResponseEntity<ProfissionalView> saveProfissional(@RequestBody @Valid ProfissionalDTO profissionalDTO) {
         var profissionalView = new ProfissionalView();
-        BeanUtils.copyProperties(profissionalRecordDto, profissionalView);
-        return ResponseEntity.status(HttpStatus.CREATED).body(profissionalRepositorio.save(profissionalView));
+        BeanUtils.copyProperties(profissionalDTO, profissionalView);
+        return ResponseEntity.status(HttpStatus.CREATED).body(profissionalRepository.save(profissionalView));
     }
     @GetMapping("/profissional")
     public ResponseEntity<List<ProfissionalView>> getAllProfissional(){
-        List<ProfissionalView> profissionalList = profissionalRepositorio.findAll();
+        List<ProfissionalView> profissionalList = profissionalRepository.findAll();
         if (!profissionalList.isEmpty()) {
             for (ProfissionalView profissional : profissionalList) {
                 UUID id = profissional.getId_profissional();
@@ -42,7 +43,7 @@ public class ProfissionalController {
     }
     @GetMapping("/profissional/{id}")
     public ResponseEntity<Object> getOneProfissional(@PathVariable(value = "id") UUID id) {
-        Optional<ProfissionalView> profissionalO = profissionalRepositorio.findById(id);
+        Optional<ProfissionalView> profissionalO = profissionalRepository.findById(id);
         if (profissionalO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O profissional não foi encontrado.");
         }
@@ -53,23 +54,23 @@ public class ProfissionalController {
         return ResponseEntity.status(HttpStatus.OK).body(profissionalO.get());
     }
     @PutMapping("/profissional/{id}")
-    public ResponseEntity<Object> updateProfissional(@PathVariable(value="id") UUID id, @RequestBody @Valid ProfissionalRecordDto profissionalRecordDto) {
+    public ResponseEntity<Object> updateProfissional(@PathVariable(value="id") UUID id, @RequestBody @Valid ProfissionalDTO profissionalDTO) {
 
-        Optional<ProfissionalView> profissionalO = profissionalRepositorio.findById(id);
+        Optional<ProfissionalView> profissionalO = profissionalRepository.findById(id);
         if (profissionalO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O profissional não foi encontrado");
         }
         var ProfissionalView = profissionalO.get();
-        BeanUtils.copyProperties(profissionalRecordDto, ProfissionalView);
-        return ResponseEntity.status(HttpStatus.OK).body(profissionalRepositorio.save(ProfissionalView));
+        BeanUtils.copyProperties(profissionalDTO, ProfissionalView);
+        return ResponseEntity.status(HttpStatus.OK).body(profissionalRepository.save(ProfissionalView));
     }
     @DeleteMapping("/profissional/{id}")
     public ResponseEntity<Object> deleteProfissional(@PathVariable(value = "id") UUID id) {
-        Optional<ProfissionalView> profissionalO = profissionalRepositorio.findById(id);
+        Optional<ProfissionalView> profissionalO = profissionalRepository.findById(id);
         if (profissionalO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O profissional não foi encontrado");
         }
-        profissionalRepositorio.delete(profissionalO.get());
+        profissionalRepository.delete(profissionalO.get());
         return ResponseEntity.status(HttpStatus.OK).body("O profissional foi deletado com sucesso.");
     }
 }

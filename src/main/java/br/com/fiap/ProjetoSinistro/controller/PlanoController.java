@@ -1,5 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
+import br.com.fiap.ProjetoSinistro.dto.PlanoDTO;
 import br.com.fiap.ProjetoSinistro.repositorios.PlanoRepository;
 import br.com.fiap.ProjetoSinistro.view.PlanoView;
 import jakarta.validation.Valid;
@@ -20,17 +21,17 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class PlanoController {
 
     @Autowired
-    PlanoRepository planoRepositorio;
+    PlanoRepository planoRepository;
 
     @PostMapping("/plano")
-    public ResponseEntity<PlanoView> savePlano(@RequestBody @Valid PlanoRecordDto planoRecordDto) {
+    public ResponseEntity<PlanoView> savePlano(@RequestBody @Valid PlanoDTO planoDTO) {
         var planoView = new PlanoView();
-        BeanUtils.copyProperties(planoRecordDto, planoView);
-        return ResponseEntity.status(HttpStatus.CREATED).body(planoRepositorio.save(planoView));
+        BeanUtils.copyProperties(planoDTO, planoView);
+        return ResponseEntity.status(HttpStatus.CREATED).body(planoRepository.save(planoView));
     }
     @GetMapping("/plano")
     public ResponseEntity<List<PlanoView>> getAllPlano(){
-        List<PlanoView> planoList = planoRepositorio.findAll();
+        List<PlanoView> planoList = planoRepository.findAll();
         if (!planoList.isEmpty()) {
             for (PlanoView plano : planoList) {
                 UUID id = plano.getId_plano();
@@ -42,7 +43,7 @@ public class PlanoController {
     }
     @GetMapping("/plano/{id}")
     public ResponseEntity<Object> getOnePlano(@PathVariable(value = "id") UUID id) {
-        Optional<PlanoView> planoO = planoRepositorio.findById(id);
+        Optional<PlanoView> planoO = planoRepository.findById(id);
         if (planoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O plano não foi encontrado");
         }
@@ -53,24 +54,24 @@ public class PlanoController {
         return ResponseEntity.status(HttpStatus.OK).body(planoO.get());
     }
     @PutMapping("/plano/{id}")
-    public ResponseEntity<Object> updatePlano(@PathVariable(value="id") UUID id, @RequestBody @Valid PlanoRecordDto planoRecordDto) {
+    public ResponseEntity<Object> updatePlano(@PathVariable(value="id") UUID id, @RequestBody @Valid PlanoDTO planoDTO) {
 
-        Optional<PlanoView> planoO = planoRepositorio.findById(id);
+        Optional<PlanoView> planoO = planoRepository.findById(id);
         if (planoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O plano não foi encontrado");
         }
         var TelefoneView = planoO.get();
         Object PlanoView = null;
-        BeanUtils.copyProperties(planoRecordDto, PlanoView);
-        return ResponseEntity.status(HttpStatus.OK).body(planoRepositorio.save(TelefoneView));
+        BeanUtils.copyProperties(planoDTO, PlanoView);
+        return ResponseEntity.status(HttpStatus.OK).body(planoRepository.save(TelefoneView));
     }
     @DeleteMapping("/plano/{id}")
     public ResponseEntity<Object> deletePlano(@PathVariable(value = "id") UUID id) {
-        Optional<PlanoView> planoO = planoRepositorio.findById(id);
+        Optional<PlanoView> planoO = planoRepository.findById(id);
         if (planoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O plano não foi encontrado");
         }
-        planoRepositorio.delete(planoO.get());
+        planoRepository.delete(planoO.get());
         return ResponseEntity.status(HttpStatus.OK).body("O plano foi deletado com sucesso.");
     }
 }

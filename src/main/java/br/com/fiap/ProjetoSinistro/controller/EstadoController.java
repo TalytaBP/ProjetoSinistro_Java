@@ -1,5 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
+import br.com.fiap.ProjetoSinistro.dto.EstadoDTO;
 import br.com.fiap.ProjetoSinistro.repositorios.EstadoRepository;
 import br.com.fiap.ProjetoSinistro.view.EstadoView;
 import jakarta.validation.Valid;
@@ -20,17 +21,17 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class EstadoController {
 
     @Autowired
-    EstadoRepository estadoRepositorio;
+    EstadoRepository estadoRepository;
 
     @PostMapping("/estado")
-    public ResponseEntity<EstadoView> saveEstado(@RequestBody @Valid EstadoRecordDto estadoRecordDto) {
+    public ResponseEntity<EstadoView> saveEstado(@RequestBody @Valid EstadoDTO estadoDTO) {
         var estadoView = new EstadoView();
-        BeanUtils.copyProperties(estadoRecordDto, estadoView);
-        return ResponseEntity.status(HttpStatus.CREATED).body(estadoRepositorio.save(estadoView));
+        BeanUtils.copyProperties(estadoDTO, estadoView);
+        return ResponseEntity.status(HttpStatus.CREATED).body(estadoRepository.save(estadoView));
     }
     @GetMapping("/estado")
     public ResponseEntity<List<EstadoView>> getAllEstado(){
-        List<EstadoView> estadoList = estadoRepositorio.findAll();
+        List<EstadoView> estadoList = estadoRepository.findAll();
         if (!estadoList.isEmpty()) {
             for (EstadoView estado : estadoList) {
                 UUID id = estado.getId_estado();
@@ -41,7 +42,7 @@ public class EstadoController {
     }
     @GetMapping("/estado/{id}")
     public ResponseEntity<Object> getOneEstado(@PathVariable(value = "id") UUID id) {
-        Optional<EstadoView> estadoO = estadoRepositorio.findById(id);
+        Optional<EstadoView> estadoO = estadoRepository.findById(id);
         if (estadoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O estado não foi encontrado.");
         }
@@ -52,23 +53,23 @@ public class EstadoController {
         return ResponseEntity.status(HttpStatus.OK).body(estadoO.get());
     }
     @PutMapping("/estado/{id}")
-    public ResponseEntity<Object> updateEstado(@PathVariable(value="id") UUID id, @RequestBody @Valid EstadoRecordDto estadoRecordDto) {
+    public ResponseEntity<Object> updateEstado(@PathVariable(value="id") UUID id, @RequestBody @Valid EstadoDTO estadoDTO) {
 
-        Optional<EstadoView> estadoO = estadoRepositorio.findById(id);
+        Optional<EstadoView> estadoO = estadoRepository.findById(id);
         if (estadoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O estado não foi encontrado");
         }
         var EstadoView = estadoO.get();
-        BeanUtils.copyProperties(estadoRecordDto, EstadoView);
-        return ResponseEntity.status(HttpStatus.OK).body(estadoRepositorio.save(EstadoView));
+        BeanUtils.copyProperties(estadoDTO, EstadoView);
+        return ResponseEntity.status(HttpStatus.OK).body(estadoRepository.save(EstadoView));
     }
     @DeleteMapping("/estado/{id}")
     public ResponseEntity<Object> deleteEstado(@PathVariable(value = "id") UUID id) {
-        Optional<EstadoView> estadoO = estadoRepositorio.findById(id);
+        Optional<EstadoView> estadoO = estadoRepository.findById(id);
         if (estadoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O estado não foi encontrado");
         }
-        estadoRepositorio.delete(estadoO.get());
+        estadoRepository.delete(estadoO.get());
         return ResponseEntity.status(HttpStatus.OK).body("O estado foi deletado com sucesso.");
     }
 }

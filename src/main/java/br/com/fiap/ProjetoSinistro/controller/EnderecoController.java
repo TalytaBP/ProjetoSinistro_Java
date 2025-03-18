@@ -1,5 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
+import br.com.fiap.ProjetoSinistro.dto.EnderecoDTO;
 import br.com.fiap.ProjetoSinistro.repositorios.EnderecoRepository;
 import br.com.fiap.ProjetoSinistro.view.EnderecoView;
 import jakarta.validation.Valid;
@@ -20,17 +21,17 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class EnderecoController {
 
     @Autowired
-    EnderecoRepository enderecoRepositorio;
+    EnderecoRepository enderecoRepository;
 
     @PostMapping("/endereco")
-    public ResponseEntity<EnderecoView> saveEndereco(@RequestBody @Valid EnderecoRecordDto enderecoRecordDto) {
+    public ResponseEntity<EnderecoView> saveEndereco(@RequestBody @Valid EnderecoDTO enderecoDTO) {
         var enderecoView = new EnderecoView();
-        BeanUtils.copyProperties(enderecoRecordDto, enderecoView);
-        return ResponseEntity.status(HttpStatus.CREATED).body(enderecoRepositorio.save(enderecoView));
+        BeanUtils.copyProperties(enderecoDTO, enderecoView);
+        return ResponseEntity.status(HttpStatus.CREATED).body(enderecoRepository.save(enderecoView));
     }
     @GetMapping("/endereco")
     public ResponseEntity<List<EnderecoView>> getAllEndereco(){
-        List<EnderecoView> enderecoList = enderecoRepositorio.findAll();
+        List<EnderecoView> enderecoList = enderecoRepository.findAll();
         if (!enderecoList.isEmpty()) {
             for (EnderecoView endereco : enderecoList) {
                 UUID id = endereco.getId_endereco();
@@ -42,7 +43,7 @@ public class EnderecoController {
     }
     @GetMapping("/endereco/{id}")
     public ResponseEntity<Object> getOneEndereco(@PathVariable(value = "id") UUID id) {
-        Optional<EnderecoView> enderecoO = enderecoRepositorio.findById(id);
+        Optional<EnderecoView> enderecoO = enderecoRepository.findById(id);
         if (enderecoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O endereço não foi encontrado.");
         }
@@ -53,23 +54,23 @@ public class EnderecoController {
         return ResponseEntity.status(HttpStatus.OK).body(enderecoO.get());
     }
     @PutMapping("/endereco/{id}")
-    public ResponseEntity<Object> updateEndereco(@PathVariable(value="id") UUID id, @RequestBody @Valid EnderecoRecordDto enderecoRecordDto) {
+    public ResponseEntity<Object> updateEndereco(@PathVariable(value="id") UUID id, @RequestBody @Valid EnderecoDTO enderecoDTO) {
 
-        Optional<EnderecoView> enderecoO = enderecoRepositorio.findById(id);
+        Optional<EnderecoView> enderecoO = enderecoRepository.findById(id);
         if (enderecoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O endereco não foi encontrado");
         }
         var EnderecoView = enderecoO.get();
-        BeanUtils.copyProperties(enderecoRecordDto, EnderecoView);
-        return ResponseEntity.status(HttpStatus.OK).body(enderecoRepositorio.save(EnderecoView));
+        BeanUtils.copyProperties(enderecoDTO, EnderecoView);
+        return ResponseEntity.status(HttpStatus.OK).body(enderecoRepository.save(EnderecoView));
     }
     @DeleteMapping("/endereco/{id}")
     public ResponseEntity<Object> deleteEndereco(@PathVariable(value = "id") UUID id) {
-        Optional<EnderecoView> enderecoO = enderecoRepositorio.findById(id);
+        Optional<EnderecoView> enderecoO = enderecoRepository.findById(id);
         if (enderecoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O endereco não foi encontrado");
         }
-        enderecoRepositorio.delete(enderecoO.get());
+        enderecoRepository.delete(enderecoO.get());
         return ResponseEntity.status(HttpStatus.OK).body("O endereco foi deletado com sucesso.");
     }
 

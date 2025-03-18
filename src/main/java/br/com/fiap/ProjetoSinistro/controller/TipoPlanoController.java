@@ -1,5 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
+import br.com.fiap.ProjetoSinistro.dto.TipoPlanoDTO;
 import br.com.fiap.ProjetoSinistro.repositorios.TipoPlanoRepository;
 import br.com.fiap.ProjetoSinistro.view.TipoPlanoView;
 import jakarta.validation.Valid;
@@ -21,17 +22,17 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class TipoPlanoController {
 
     @Autowired
-    TipoPlanoRepository tipoPlanoRepositorio;
+    TipoPlanoRepository tipoPlanoRepository;
 
     @PostMapping("/tipo_plano")
-    public ResponseEntity<TipoPlanoView> saveTipoPlano(@RequestBody @Valid TipoPlanoRecordDto tipoPlanoRecordDto) {
+    public ResponseEntity<TipoPlanoView> saveTipoPlano(@RequestBody @Valid TipoPlanoDTO tipoPlanoDTO) {
         var tipoPlanoView = new TipoPlanoView();
-        BeanUtils.copyProperties(tipoPlanoRecordDto, tipoPlanoView);
-        return ResponseEntity.status(HttpStatus.CREATED).body(tipoPlanoRepositorio.save(tipoPlanoView));
+        BeanUtils.copyProperties(tipoPlanoDTO, tipoPlanoView);
+        return ResponseEntity.status(HttpStatus.CREATED).body(tipoPlanoRepository.save(tipoPlanoView));
     }
     @GetMapping("/tipo_plano")
     public ResponseEntity<List<TipoPlanoView>> getAllTipoPlano(){
-        List<TipoPlanoView> tipoPlanoList = tipoPlanoRepositorio.findAll();
+        List<TipoPlanoView> tipoPlanoList = tipoPlanoRepository.findAll();
         if (!tipoPlanoList.isEmpty()) {
             for (TipoPlanoView tipoPlano : tipoPlanoList) {
                 UUID id = tipoPlano.getId_tp_plano();
@@ -43,7 +44,7 @@ public class TipoPlanoController {
     }
     @GetMapping("/tipo_plano/{id}")
     public ResponseEntity<Object> getOneTipoPlano(@PathVariable(value = "id") UUID id) {
-        Optional<TipoPlanoView> tipoPlanoO = tipoPlanoRepositorio.findById(id);
+        Optional<TipoPlanoView> tipoPlanoO = tipoPlanoRepository.findById(id);
         if (tipoPlanoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O tipo de plano não foi encontrado.");
         }
@@ -54,23 +55,23 @@ public class TipoPlanoController {
         return ResponseEntity.status(HttpStatus.OK).body(tipoPlanoO.get());
     }
     @PutMapping("/tipo_plano/{id}")
-    public ResponseEntity<Object> updateTipoPlano(@PathVariable(value="id") UUID id, @RequestBody @Valid TipoPlanoRecordDto tipoPlanoRecordDto) {
+    public ResponseEntity<Object> updateTipoPlano(@PathVariable(value="id") UUID id, @RequestBody @Valid TipoPlanoDTO tipoPlanoDTO) {
 
-        Optional<TipoPlanoView> tipoPlanoO = tipoPlanoRepositorio.findById(id);
+        Optional<TipoPlanoView> tipoPlanoO = tipoPlanoRepository.findById(id);
         if (tipoPlanoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O tipo de plano não foi encontrado");
         }
         var TipoPlanoView = tipoPlanoO.get();
-        BeanUtils.copyProperties(tipoPlanoRecordDto, TipoPlanoView);
-        return ResponseEntity.status(HttpStatus.OK).body(tipoPlanoRepositorio.save(TipoPlanoView));
+        BeanUtils.copyProperties(tipoPlanoDTO, TipoPlanoView);
+        return ResponseEntity.status(HttpStatus.OK).body(tipoPlanoRepository.save(TipoPlanoView));
     }
     @DeleteMapping("/tipo_plano/{id}")
     public ResponseEntity<Object> deleteTipoPlano(@PathVariable(value = "id") UUID id) {
-        Optional<TipoPlanoView> tipoPlanoO = tipoPlanoRepositorio.findById(id);
+        Optional<TipoPlanoView> tipoPlanoO = tipoPlanoRepository.findById(id);
         if (tipoPlanoO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O tipo de plano não foi encontrado");
         }
-        tipoPlanoRepositorio.delete(tipoPlanoO.get());
+        tipoPlanoRepository.delete(tipoPlanoO.get());
         return ResponseEntity.status(HttpStatus.OK).body("O tipo de plano foi deletado com sucesso.");
     }
 

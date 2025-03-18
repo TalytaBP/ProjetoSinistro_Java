@@ -21,17 +21,17 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class AnaliseSaudeBucalController {
 
     @Autowired
-    AnaliseSaudeBucalRepository analiseSaudeBucalRepositorio;
+    AnaliseSaudeBucalRepository analiseSaudeBucalRepository;
 
     @PostMapping("/analise_saude_bucal")
     public ResponseEntity<AnaliseSaudeBucalView> saveAnaliseSaudeBucal(@RequestBody @Valid AnaliseSaudeBucalDTO analiseSaudeBucalDTO) {
         var analiseSaudeBucalView = new AnaliseSaudeBucalView();
         BeanUtils.copyProperties(analiseSaudeBucalDTO, analiseSaudeBucalView);
-        return ResponseEntity.status(HttpStatus.CREATED).body(analiseSaudeBucalRepositorio.save(analiseSaudeBucalView));
+        return ResponseEntity.status(HttpStatus.CREATED).body(analiseSaudeBucalRepository.save(analiseSaudeBucalView));
     }
     @GetMapping("/analise_saude_bucal")
     public ResponseEntity<List<AnaliseSaudeBucalView>> getAllAnaliseSaudeBucal(){
-        List<AnaliseSaudeBucalView> analiseSaudeBucalList = analiseSaudeBucalRepositorio.findAll();
+        List<AnaliseSaudeBucalView> analiseSaudeBucalList = analiseSaudeBucalRepository.findAll();
         if (!analiseSaudeBucalList.isEmpty()) {
             for (AnaliseSaudeBucalView analiseSaudeBucal : analiseSaudeBucalList) {
                 UUID id = analiseSaudeBucal.getId_scanner();
@@ -43,7 +43,7 @@ public class AnaliseSaudeBucalController {
     }
     @GetMapping("/analise_saude_bucal/{id}")
     public ResponseEntity<Object> getOneAnaliseSaudeBucal(@PathVariable(value = "id") UUID id) {
-        Optional<AnaliseSaudeBucalView> analiseSaudeBucalO = analiseSaudeBucalRepositorio.findById(id);
+        Optional<AnaliseSaudeBucalView> analiseSaudeBucalO = analiseSaudeBucalRepository.findById(id);
         if (analiseSaudeBucalO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("A análise bucal não foi encontrada.");
         }
@@ -56,21 +56,21 @@ public class AnaliseSaudeBucalController {
     @PutMapping("/analise_saude_bucal/{id}")
     public ResponseEntity<Object> updateAnaliseSaudeBucal(@PathVariable(value="id") UUID id, @RequestBody @Valid AnaliseSaudeBucalDTO analiseSaudeBucalDTO) {
 
-        Optional<AnaliseSaudeBucalView> analiseSaudeBucalO = analiseSaudeBucalRepositorio.findById(id);
+        Optional<AnaliseSaudeBucalView> analiseSaudeBucalO = analiseSaudeBucalRepository.findById(id);
         if (analiseSaudeBucalO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("A análise bucal não foi encontrada");
         }
         var AnaliseSaudeBucalView = analiseSaudeBucalO.get();
         BeanUtils.copyProperties(analiseSaudeBucalDTO, AnaliseSaudeBucalView);
-        return ResponseEntity.status(HttpStatus.OK).body(analiseSaudeBucalRepositorio.save(AnaliseSaudeBucalView));
+        return ResponseEntity.status(HttpStatus.OK).body(analiseSaudeBucalRepository.save(AnaliseSaudeBucalView));
     }
     @DeleteMapping("/analise_saude_bucal/{id}")
     public ResponseEntity<Object> deleteAnaliseSaudeBucal(@PathVariable(value = "id") UUID id) {
-        Optional<AnaliseSaudeBucalView> analiseSaudeBucalO = analiseSaudeBucalRepositorio.findById(id);
+        Optional<AnaliseSaudeBucalView> analiseSaudeBucalO = analiseSaudeBucalRepository.findById(id);
         if (analiseSaudeBucalO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("A análise bucal não foi encontrada");
         }
-        analiseSaudeBucalRepositorio.delete(analiseSaudeBucalO.get());
+        analiseSaudeBucalRepository.delete(analiseSaudeBucalO.get());
         return ResponseEntity.status(HttpStatus.OK).body("A análise bucal foi deletada com sucesso.");
     }
 }

@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import org.springframework.hateoas.Link;
+
 import java.util.UUID;
 @ToString
 @Entity
@@ -32,5 +34,6 @@ public class AnaliseSaudeBucalView {
 
     @NotBlank
     private String infeccao;
+
 
 }
