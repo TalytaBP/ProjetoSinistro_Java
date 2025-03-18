@@ -1,7 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
-import br.com.fiap.ProjetoSinistro.dto.TelefoneRecordDto;
-import br.com.fiap.ProjetoSinistro.repositorios.TelefoneRepositorio;
+import br.com.fiap.ProjetoSinistro.repositorios.TelefoneRepository;
 import br.com.fiap.ProjetoSinistro.view.TelefoneView;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class TelefoneController {
 
     @Autowired
-    TelefoneRepositorio telefoneRepositorio;
+    TelefoneRepository telefoneRepositorio;
 
     @PostMapping("/telefone")
     public ResponseEntity<TelefoneView> saveTelefone(@RequestBody @Valid TelefoneRecordDto telefoneRecordDto) {

@@ -1,7 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
-import br.com.fiap.ProjetoSinistro.dto.ProfissionalRecordDto;
-import br.com.fiap.ProjetoSinistro.repositorios.ProfissionalRepositorio;
+import br.com.fiap.ProjetoSinistro.repositorios.ProfissionalRepository;
 import br.com.fiap.ProjetoSinistro.view.ProfissionalView;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class ProfissionalController {
 
     @Autowired
-    ProfissionalRepositorio profissionalRepositorio;
+    ProfissionalRepository profissionalRepositorio;
 
     @PostMapping("/profissional")
     public ResponseEntity<ProfissionalView> saveProfissional(@RequestBody @Valid ProfissionalRecordDto profissionalRecordDto) {

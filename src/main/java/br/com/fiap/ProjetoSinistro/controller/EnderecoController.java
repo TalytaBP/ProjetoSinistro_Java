@@ -1,7 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
-import br.com.fiap.ProjetoSinistro.dto.EnderecoRecordDto;
-import br.com.fiap.ProjetoSinistro.repositorios.EnderecoRepositorio;
+import br.com.fiap.ProjetoSinistro.repositorios.EnderecoRepository;
 import br.com.fiap.ProjetoSinistro.view.EnderecoView;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class EnderecoController {
 
     @Autowired
-    EnderecoRepositorio enderecoRepositorio;
+    EnderecoRepository enderecoRepositorio;
 
     @PostMapping("/endereco")
     public ResponseEntity<EnderecoView> saveEndereco(@RequestBody @Valid EnderecoRecordDto enderecoRecordDto) {

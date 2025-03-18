@@ -1,7 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
-import br.com.fiap.ProjetoSinistro.dto.TipoPlanoRecordDto;
-import br.com.fiap.ProjetoSinistro.repositorios.TipoPlanoRepositorio;
+import br.com.fiap.ProjetoSinistro.repositorios.TipoPlanoRepository;
 import br.com.fiap.ProjetoSinistro.view.TipoPlanoView;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -22,7 +21,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class TipoPlanoController {
 
     @Autowired
-    TipoPlanoRepositorio tipoPlanoRepositorio;
+    TipoPlanoRepository tipoPlanoRepositorio;
 
     @PostMapping("/tipo_plano")
     public ResponseEntity<TipoPlanoView> saveTipoPlano(@RequestBody @Valid TipoPlanoRecordDto tipoPlanoRecordDto) {

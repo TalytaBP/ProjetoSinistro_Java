@@ -1,7 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
-import br.com.fiap.ProjetoSinistro.dto.RegiaoRecordDto;
-import br.com.fiap.ProjetoSinistro.repositorios.RegiaoRepositorio;
+import br.com.fiap.ProjetoSinistro.repositorios.RegiaoRepository;
 import br.com.fiap.ProjetoSinistro.view.RegiaoView;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class RegiaoController {
 
     @Autowired
-    RegiaoRepositorio regiaoRepositorio;
+    RegiaoRepository regiaoRepositorio;
 
     @PostMapping("/regiao")
     public ResponseEntity<RegiaoView> saveRegiao(@RequestBody @Valid RegiaoRecordDto regiaoRecordDto) {

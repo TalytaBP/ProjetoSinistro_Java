@@ -1,7 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
-import br.com.fiap.ProjetoSinistro.dto.EstadoRecordDto;
-import br.com.fiap.ProjetoSinistro.repositorios.EstadoRepositorio;
+import br.com.fiap.ProjetoSinistro.repositorios.EstadoRepository;
 import br.com.fiap.ProjetoSinistro.view.EstadoView;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class EstadoController {
 
     @Autowired
-    EstadoRepositorio estadoRepositorio;
+    EstadoRepository estadoRepositorio;
 
     @PostMapping("/estado")
     public ResponseEntity<EstadoView> saveEstado(@RequestBody @Valid EstadoRecordDto estadoRecordDto) {

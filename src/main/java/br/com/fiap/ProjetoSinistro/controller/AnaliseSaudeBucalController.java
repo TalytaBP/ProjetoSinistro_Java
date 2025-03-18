@@ -1,7 +1,7 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
-import br.com.fiap.ProjetoSinistro.dto.AnaliseSaudeBucalRecordDto;
-import br.com.fiap.ProjetoSinistro.repositorios.AnaliseSaudeBucalRepositorio;
+import br.com.fiap.ProjetoSinistro.dto.AnaliseSaudeBucalDTO;
+import br.com.fiap.ProjetoSinistro.repositorios.AnaliseSaudeBucalRepository;
 import br.com.fiap.ProjetoSinistro.view.AnaliseSaudeBucalView;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -21,12 +21,12 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class AnaliseSaudeBucalController {
 
     @Autowired
-    AnaliseSaudeBucalRepositorio analiseSaudeBucalRepositorio;
+    AnaliseSaudeBucalRepository analiseSaudeBucalRepositorio;
 
     @PostMapping("/analise_saude_bucal")
-    public ResponseEntity<AnaliseSaudeBucalView> saveAnaliseSaudeBucal(@RequestBody @Valid AnaliseSaudeBucalRecordDto analiseSaudeBucalRecordDto) {
+    public ResponseEntity<AnaliseSaudeBucalView> saveAnaliseSaudeBucal(@RequestBody @Valid AnaliseSaudeBucalDTO analiseSaudeBucalDTO) {
         var analiseSaudeBucalView = new AnaliseSaudeBucalView();
-        BeanUtils.copyProperties(analiseSaudeBucalRecordDto, analiseSaudeBucalView);
+        BeanUtils.copyProperties(analiseSaudeBucalDTO, analiseSaudeBucalView);
         return ResponseEntity.status(HttpStatus.CREATED).body(analiseSaudeBucalRepositorio.save(analiseSaudeBucalView));
     }
     @GetMapping("/analise_saude_bucal")
@@ -54,14 +54,14 @@ public class AnaliseSaudeBucalController {
         return ResponseEntity.status(HttpStatus.OK).body(analiseSaudeBucalO.get());
     }
     @PutMapping("/analise_saude_bucal/{id}")
-    public ResponseEntity<Object> updateAnaliseSaudeBucal(@PathVariable(value="id") UUID id, @RequestBody @Valid AnaliseSaudeBucalRecordDto analiseSaudeBucalRecordDto) {
+    public ResponseEntity<Object> updateAnaliseSaudeBucal(@PathVariable(value="id") UUID id, @RequestBody @Valid AnaliseSaudeBucalDTO analiseSaudeBucalDTO) {
 
         Optional<AnaliseSaudeBucalView> analiseSaudeBucalO = analiseSaudeBucalRepositorio.findById(id);
         if (analiseSaudeBucalO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("A análise bucal não foi encontrada");
         }
         var AnaliseSaudeBucalView = analiseSaudeBucalO.get();
-        BeanUtils.copyProperties(analiseSaudeBucalRecordDto, AnaliseSaudeBucalView);
+        BeanUtils.copyProperties(analiseSaudeBucalDTO, AnaliseSaudeBucalView);
         return ResponseEntity.status(HttpStatus.OK).body(analiseSaudeBucalRepositorio.save(AnaliseSaudeBucalView));
     }
     @DeleteMapping("/analise_saude_bucal/{id}")

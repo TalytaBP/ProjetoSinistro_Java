@@ -1,7 +1,7 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
-import br.com.fiap.ProjetoSinistro.dto.BairroRecordDto;
-import br.com.fiap.ProjetoSinistro.repositorios.BairroRepositorio;
+import br.com.fiap.ProjetoSinistro.dto.BairroDTO;
+import br.com.fiap.ProjetoSinistro.repositorios.BairroRepository;
 import br.com.fiap.ProjetoSinistro.view.BairroView;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -21,12 +21,12 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class BairroController {
 
     @Autowired
-    BairroRepositorio bairroRepositorio;
+    BairroRepository bairroRepositorio;
 
     @PostMapping("/bairro")
-    public ResponseEntity<BairroView> saveBairro(@RequestBody @Valid BairroRecordDto bairroRecordDto) {
+    public ResponseEntity<BairroView> saveBairro(@RequestBody @Valid BairroDTO bairroDTO) {
         var bairroView = new BairroView();
-        BeanUtils.copyProperties(bairroRecordDto, bairroView);
+        BeanUtils.copyProperties(bairroDTO, bairroView);
         return ResponseEntity.status(HttpStatus.CREATED).body(bairroRepositorio.save(bairroView));
     }
     @GetMapping("/bairro")
@@ -54,14 +54,14 @@ public class BairroController {
         return ResponseEntity.status(HttpStatus.OK).body(bairroO.get());
     }
     @PutMapping("/bairro/{id}")
-    public ResponseEntity<Object> updateBairro(@PathVariable(value="id") UUID id, @RequestBody @Valid BairroRecordDto bairroRecordDto) {
+    public ResponseEntity<Object> updateBairro(@PathVariable(value="id") UUID id, @RequestBody @Valid BairroDTO bairroDTO) {
 
         Optional<BairroView> bairroO = bairroRepositorio.findById(id);
         if (bairroO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O bairro não foi encontrado");
         }
         var BairroView = bairroO.get();
-        BeanUtils.copyProperties(bairroRecordDto, BairroView);
+        BeanUtils.copyProperties(bairroDTO, BairroView);
         return ResponseEntity.status(HttpStatus.OK).body(bairroRepositorio.save(BairroView));
     }
     @DeleteMapping("/bairro/{id}")

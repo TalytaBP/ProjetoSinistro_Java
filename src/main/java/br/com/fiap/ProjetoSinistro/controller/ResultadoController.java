@@ -1,7 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
-import br.com.fiap.ProjetoSinistro.dto.ResultadoRecordDto;
-import br.com.fiap.ProjetoSinistro.repositorios.ResultadoRepositorio;
+import br.com.fiap.ProjetoSinistro.repositorios.ResultadoRepository;
 import br.com.fiap.ProjetoSinistro.view.ResultadoView;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class ResultadoController {
 
     @Autowired
-    ResultadoRepositorio resultadoRepositorio;
+    ResultadoRepository resultadoRepositorio;
 
     @PostMapping("/resultado")
     public ResponseEntity<ResultadoView> saveResultado(@RequestBody @Valid ResultadoRecordDto resultadoRecordDto) {

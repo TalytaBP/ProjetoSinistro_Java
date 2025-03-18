@@ -1,7 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
-import br.com.fiap.ProjetoSinistro.dto.PacienteRecordDto;
-import br.com.fiap.ProjetoSinistro.repositorios.PacienteRepositorio;
+import br.com.fiap.ProjetoSinistro.repositorios.PacienteRepository;
 import br.com.fiap.ProjetoSinistro.view.PacienteView;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class PacienteController {
 
     @Autowired
-    PacienteRepositorio pacienteRepositorio;
+    PacienteRepository pacienteRepositorio;
 
     @PostMapping("/paciente")
     public ResponseEntity<PacienteView> savePaciente(@RequestBody @Valid PacienteRecordDto pacienteRecordDto) {

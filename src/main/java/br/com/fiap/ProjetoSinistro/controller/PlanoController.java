@@ -1,7 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
-import br.com.fiap.ProjetoSinistro.dto.PlanoRecordDto;
-import br.com.fiap.ProjetoSinistro.repositorios.PlanoRepositorio;
+import br.com.fiap.ProjetoSinistro.repositorios.PlanoRepository;
 import br.com.fiap.ProjetoSinistro.view.PlanoView;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class PlanoController {
 
     @Autowired
-    PlanoRepositorio planoRepositorio;
+    PlanoRepository planoRepositorio;
 
     @PostMapping("/plano")
     public ResponseEntity<PlanoView> savePlano(@RequestBody @Valid PlanoRecordDto planoRecordDto) {

@@ -1,7 +1,6 @@
 package br.com.fiap.ProjetoSinistro.controller;
 
-import br.com.fiap.ProjetoSinistro.dto.MunicipioRecordDto;
-import br.com.fiap.ProjetoSinistro.repositorios.MunicipioRepositorio;
+import br.com.fiap.ProjetoSinistro.repositorios.MunicipioRepository;
 import br.com.fiap.ProjetoSinistro.view.MunicipioView;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class MunicipioController {
 
     @Autowired
-    MunicipioRepositorio municipioRepositorio;
+    MunicipioRepository municipioRepositorio;
 
     @PostMapping("/municipio")
     public ResponseEntity<MunicipioView> saveMunicipio(@RequestBody @Valid MunicipioRecordDto municipioRecordDto) {
