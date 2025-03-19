@@ -40,4 +40,5 @@ public class AnaliseSaudeBucalView extends RepresentationModel<AnaliseSaudeBucal
     private String infeccao;
 
 
+
 }

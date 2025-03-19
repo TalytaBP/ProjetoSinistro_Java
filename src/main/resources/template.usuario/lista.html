@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{lista.titulo}">Gerenciamento de Usuários</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<!-- Menu do Sistema -->
+<div th:replace="~{fragments/header :: header}">
+    MENU DO SISTEMA
+</div>
+
+<main class="container mx-auto p-6">
+    <!-- Mensagens de status -->
+    <div th:if="${mensagemStatus}"
+         th:class="${mensagemSucesso}? 'bg-green-100' : 'bg-red-100'"
+         class="text-center py-4 mb-6 rounded-lg">
+        <span th:text="${mensagemStatus}">Mensagem de Status</span>
+    </div>
+
+    <!-- Título e botão de adicionar -->
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold" th:text="#{lista.titulo}">Lista de Usuários</h1>
+        <a th:href="@{/usuario/novo}"
+           class="bg-blue-600 text-white px-4 py-2 rounded-lg
+                     hover:bg-blue-700 transition-colors"
+           th:text="#{lista.botao.novo}">Novo Usuário</a>
+    </div>
+
+    <!-- Tabela de usuários -->
+    <div class="p-4">
+        <table class="w-full">
+            <thead>
+            <tr class="bg-blue-50">
+                <th class="p-3 text-left font-medium" th:text="${#messages.msg('lista.tabela.colunas.id')}">ID</th>
+                <th class="p-3 text-left font-medium" th:text="${#messages.msg('lista.tabela.colunas.nome')}">Nome</th>
+                <th class="p-3 text-left font-medium" th:text="${#messages.msg('lista.tabela.colunas.email')}">Email</th>
+                <th class="p-3 text-left font-medium" th:text="${#messages.msg('lista.tabela.colunas.status')}">Status</th>
+                <th class="p-3 text-left font-medium" th:text="${#messages.msg('lista.tabela.colunas.acao')}">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="border-b hover:bg-gray-50 transition-colors"
+                th:each="usuario : ${listaUsuarios}">
+                <td class="p-3" th:text="${usuario.id_usuario}">UUID</td>
+                <td class="p-3" th:text="${usuario.nome}">NOME USUÁRIO</td>
+                <td class="p-3" th:text="${usuario.email}">EMAIL</td>
+                <td class="p-3" th:text="${usuario.status}">STATUS</td>
+                <td class="p-3">
+                    <div class="flex gap-2">
+                        <a class="text-blue-600 hover:text-blue-800 transition-colors"
+                           th:href="@{/usuario/editar/{id}(id=${usuario.id_usuario})}"
+                           th:text="${#messages.msg('lista.botao.editar')}">Editar</a>
+                        <a class="text-red-600 hover:text-red-800 transition-colors"
+                           th:href="@{/usuario/deletar/{id}(id=${usuario.id_usuario})}"
+                           th:text="${#messages.msg('lista.botao.deletar')}">Deletar</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<!-- Rodapé do Sistema -->
+<div th:replace="~{fragments/footer :: footer}">
+    RODAPÉ DO SISTEMA
+</div>
+</body>
+</html>

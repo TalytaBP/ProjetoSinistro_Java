@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Footer</title>
 </head>
 <body>
+<footer class="bg-gray-100 mt-8 p-4 text-center" th:fragment="footer">
+    <div class="container mx-auto">
+        <!-- Informações de copyright -->
+        <div class="text-sm text-gray-600">
+            <p th:text="#{texto.footer.copyright}">
+                Sistema de Análise Bucal 2025. Direitos Reservados
+            </p>
 
+            <!-- Informações de contato -->
+            <p class="mt-2">
+                <a th:href="@{mailto:${texto.footer.email}}"
+                   class="hover:underline"
+                   th:text="${texto.footer.email}">
+                    suporte@analisebucal.com
+                </a>
+            </p>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

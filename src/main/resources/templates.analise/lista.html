@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{lista.titulo}">Análises de Saúde Bucal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}">
+    MENU DO SISTEMA
+</div>
+
+<main class="container mx-auto p-6">
+    <!-- Mensagem de status após operações -->
+    <div th:if="${mensagemStatus}"
+         th:class="${mensagemSucesso}? 'bg-green-100' : 'bg-red-100'"
+         class="text-center py-4 mb-6 rounded-lg">
+        <span th:text="${mensagemStatus}">Mensagem de Status</span>
+    </div>
+
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold" th:text="#{lista.titulo}">Lista de Análises de Saúde Bucal</h1>
+        <a th:href="@{/analise_saude_bucal/novo}"
+           class="bg-blue-600 text-white px-4 py-2 rounded-lg
+                     hover:bg-blue-700 transition-colors"
+           th:text="#{lista.botao.nova}">Nova Análise</a>
+    </div>
+
+    <div class="p-4">
+        <table class="w-full">
+            <thead>
+            <tr class="bg-blue-50">
+                <th class="p-3 text-left font-medium" th:text="#{lista.tabela.colunas.id}">ID Scanner</th>
+                <th class="p-3 text-left font-medium" th:text="${#messages.msg('lista.tabela.colunas.paciente')}">Paciente</th>
+                <th class="p-3 text-left font-medium" th:text="${#messages.msg('lista.tabela.colunas.data')}">Data da Análise</th>
+                <th class="p-3 text-left font-medium" th:text="${#messages.msg('lista.tabela.colunas.status')}">Status</th>
+                <th class="p-3 text-left font-medium" th:text="${#messages.msg('lista.tabela.colunas.acao')}">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="border-b hover:bg-gray-50 transition-colors"
+                th:each="analise : ${listaAnalisessb}">
+                <td class="p-3" th:text="${analise.id_scanner}">UUID</td>
+                <td class="p-3" th:text="${analise.paciente.nome}">NOME PACIENTE</td>
+                <td class="p-3"
+                    th:text="${#temporals.format(analise.data_analise, 'dd/MM/yyyy')}">
+                    DATA
+                </td>
+                <td class="p-3" th:text="${analise.status}">STATUS</td>
+                <td class="p-3">
+                    <div class="flex gap-2">
+                        <a class="text-blue-600 hover:text-blue-800 transition-colors"
+                           th:href="@{/analise_saude_bucal/editar/{id}(id=${analise.id_scanner})}"
+                           th:text="${#messages.msg('lista.botao.editar')}">Editar</a>
+                        <a class="text-red-600 hover:text-red-800 transition-colors"
+                           th:href="@{/analise_saude_bucal/deletar/{id}(id=${analise.id_scanner})}"
+                           th:text="${#messages.msg('lista.botao.deletar')}">Deletar</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}">
+    RODAPÉ DO SISTEMA
+</div>
+</body>
+</html>

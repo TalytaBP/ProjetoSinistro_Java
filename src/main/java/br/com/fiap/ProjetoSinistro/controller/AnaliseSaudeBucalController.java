@@ -6,7 +6,7 @@ import br.com.fiap.ProjetoSinistro.repositorios.PacienteRepository;
 import br.com.fiap.ProjetoSinistro.service.AnaliseSaudeBucalService;
 import br.com.fiap.ProjetoSinistro.service.PacienteService;
 import br.com.fiap.ProjetoSinistro.view.AnaliseSaudeBucalView;
-import ch.qos.logback.core.model.Model;
+import org.springframework.ui.Model;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
@@ -51,6 +51,8 @@ public class AnaliseSaudeBucalController {
 
         return ResponseEntity.status(HttpStatus.OK).body(analiseSaudeBucalList);
     }
+
+
     @GetMapping("/analise_saude_bucal/{id}")
     public ResponseEntity<Object> getOneAnaliseSaudeBucal(@PathVariable(value = "id") UUID id) {
         Optional<AnaliseSaudeBucalView> analiseSaudeBucalO = analiseSaudeBucalRepository.findById(id);
@@ -75,6 +77,8 @@ public class AnaliseSaudeBucalController {
         BeanUtils.copyProperties(analiseSaudeBucalDTO, AnaliseSaudeBucalView);
         return ResponseEntity.status(HttpStatus.OK).body(analiseSaudeBucalRepository.save(AnaliseSaudeBucalView));
     }
+
+
     @DeleteMapping("/analise_saude_bucal/{id}")
     public ResponseEntity<Object> deleteAnaliseSaudeBucal(@PathVariable(value = "id") UUID id) {
         Optional<AnaliseSaudeBucalView> analiseSaudeBucalO = analiseSaudeBucalRepository.findById(id);

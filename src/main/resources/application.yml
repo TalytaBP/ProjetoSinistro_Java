@@ -1,0 +1,38 @@
+# Configurações do servidor
+server:
+  port: 8080
+
+# Configurações da aplicação
+spring:
+  application:
+    name: ProjetoSinistro
+
+  # Configurações do datasource Oracle
+  datasource:
+    url: jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl
+    username: rm553739
+    password: 300693
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+
+  # Configurações do JPA/Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: update
+      jdbc.lob.non_contextual_creation: true
+
+  # Configurações do Thymeleaf
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
+  # Configurações de mensagens
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+
+# Configurações de logging
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

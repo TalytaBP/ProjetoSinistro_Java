@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
+<header class="bg-blue-600 text-white p-4 mb-8" th:fragment="header">
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- Logo/Título do Sistema -->
+        <div class="text-2xl font-bold" th:text="${texto.titulo.header}">
+            Sistema de Análise Bucal
+        </div>
 
+        <!-- Menu Principal -->
+        <nav>
+            <ul class="flex gap-4">
+                <!-- Link para análises -->
+                <li><a th:href="@{/analise_saude_bucal}"
+                       class="hover:underline"
+                       th:text="#{texto.link.analise.header}">
+                    Análises
+                </a></li>
+
+                <!-- Link para usuários -->
+                <li><a th:href="@{/usuario}"
+                       class="hover:underline"
+                       th:text="#{texto.link.usuario.header}">
+                    Usuários
+                </a></li>
+
+                <!-- Link para nova análise -->
+                <li><a th:href="@{/analise_saude_bucal/novo}"
+                       class="hover:underline"
+                       th:text="#{texto.link.nova.header}">
+                    Nova Análise
+                </a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 </body>
 </html>
