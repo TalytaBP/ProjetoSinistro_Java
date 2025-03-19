@@ -55,7 +55,6 @@ public class EnderecoService {
         enderecoView.setNr_cep(enderecoDTO.getNr_cep());
         enderecoView.setNr_complemento(enderecoDTO.getNr_complemento());
         enderecoView.setNm_logradouro(enderecoDTO.getNm_logradouro());
-        enderecoView.setBairro(enderecoDTO.getBairro());
 
         return enderecoView;
     }
@@ -66,7 +65,6 @@ public class EnderecoService {
         enderecoDTO.setNr_cep(enderecoView.getNr_cep());
         enderecoDTO.setNr_complemento(enderecoView.getNr_complemento());
         enderecoDTO.setNm_logradouro(enderecoView.getNm_logradouro());
-        enderecoDTO.setBairro(enderecoView.getBairro());
         enderecoDTO.setNm_rua(enderecoView.getNm_rua());
         return enderecoDTO;
     }

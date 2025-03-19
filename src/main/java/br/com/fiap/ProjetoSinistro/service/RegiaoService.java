@@ -53,7 +53,6 @@ public class RegiaoService {
         RegiaoView regiaoView = new RegiaoView();
         regiaoView.setId_regiao(regiaoDTO.getId_regiao());
         regiaoView.setNm_regiao(regiaoDTO.getNm_regiao());
-        regiaoView.setMunicipio(regiaoDTO.getMunicipio());
         return regiaoView;
     }
 
@@ -61,7 +60,6 @@ public class RegiaoService {
         RegiaoDTO regiaoDTO = new RegiaoDTO();
         regiaoDTO.setId_regiao(regiaoView.getId_regiao());
         regiaoDTO.setNm_regiao(regiaoView.getNm_regiao());
-        regiaoDTO.setMunicipio(regiaoView.getMunicipio());
         return regiaoDTO;
     }
 }

@@ -4,6 +4,8 @@ import br.com.fiap.ProjetoSinistro.dto.ProfissionalDTO;
 import br.com.fiap.ProjetoSinistro.repositorios.ProfissionalRepository;
 import br.com.fiap.ProjetoSinistro.view.ProfissionalView;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
+@RequestMapping
+@AllArgsConstructor
+@Log
 public class ProfissionalController {
 
     @Autowired

@@ -6,13 +6,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import lombok.Data;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.util.UUID;
+
 @ToString
 @Entity
 @Table(name = "ANALISE_SAUDE_BUCAL")
-public class AnaliseSaudeBucalView {
+@Data
+public class AnaliseSaudeBucalView extends RepresentationModel<AnaliseSaudeBucalView> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -2,8 +2,14 @@ package br.com.fiap.ProjetoSinistro.controller;
 
 import br.com.fiap.ProjetoSinistro.dto.AnaliseSaudeBucalDTO;
 import br.com.fiap.ProjetoSinistro.repositorios.AnaliseSaudeBucalRepository;
+import br.com.fiap.ProjetoSinistro.repositorios.PacienteRepository;
+import br.com.fiap.ProjetoSinistro.service.AnaliseSaudeBucalService;
+import br.com.fiap.ProjetoSinistro.service.PacienteService;
 import br.com.fiap.ProjetoSinistro.view.AnaliseSaudeBucalView;
+import ch.qos.logback.core.model.Model;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +24,14 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
+@RequestMapping
+@AllArgsConstructor
+@Log
 public class AnaliseSaudeBucalController {
 
     @Autowired
     AnaliseSaudeBucalRepository analiseSaudeBucalRepository;
+    PacienteRepository pacienteRepository;
 
     @PostMapping("/analise_saude_bucal")
     public ResponseEntity<AnaliseSaudeBucalView> saveAnaliseSaudeBucal(@RequestBody @Valid AnaliseSaudeBucalDTO analiseSaudeBucalDTO) {
@@ -53,6 +63,7 @@ public class AnaliseSaudeBucalController {
 
         return ResponseEntity.status(HttpStatus.OK).body(analiseSaudeBucalO.get());
     }
+
     @PutMapping("/analise_saude_bucal/{id}")
     public ResponseEntity<Object> updateAnaliseSaudeBucal(@PathVariable(value="id") UUID id, @RequestBody @Valid AnaliseSaudeBucalDTO analiseSaudeBucalDTO) {
 

@@ -27,8 +27,8 @@ public class TipoPlanoService {
 
     private TipoPlanoView convertToEntity(TipoPlanoDTO dto) {
         TipoPlanoView tipoPlanoView = new TipoPlanoView();
-        tipoPlanoView.setId(dto.getId());
-        tipoPlanoView.setNome(dto.getNome());
+        tipoPlanoView.setId_tp_plano(dto.getId_tp_plano());
+        tipoPlanoView.setNm_plano(dto.getNm_plano());
         return tipoPlanoView;
     }
 

@@ -22,7 +22,7 @@ public class MunicipioService {
             municipioView = municipioRepository.save(municipioView);
         } else {
             MunicipioDTO byId = this.findById(municipioDTO.getId_municipio());
-            byId.setNm_municipio(MunicipioView.getNm_municipio());
+            byId.setNm_municipio(municipioView.getNm_municipio());
             municipioView = municipioRepository.save(toEntity(byId));
         }
         return toDto(municipioView);
@@ -52,15 +52,12 @@ public class MunicipioService {
         MunicipioView municipioView = new MunicipioView();
         municipioView.setId_municipio(municipioDTO.getId_municipio());
         municipioView.setNm_municipio(municipioDTO.getNm_municipio());
-        municipioView.setEstado(municipioDTO.getEstado());
         return municipioView;
     }
 
     private static MunicipioDTO toDto(MunicipioView municipioView) {
         MunicipioDTO municipioDTO = new MunicipioDTO();
         municipioDTO.setId_municipio(municipioView.getId_municipio());
-        municipioDTO.setNome(municipioView.getNome());
-        municipioDTO.setEstado(municipioView.getEstado());
         return municipioDTO;
     }
 }

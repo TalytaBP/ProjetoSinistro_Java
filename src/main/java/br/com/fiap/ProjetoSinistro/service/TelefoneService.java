@@ -66,7 +66,6 @@ public class TelefoneService {
         telefoneView.setTp_contato(telefoneDTO.getTp_contato());
         telefoneView.setNr_telefone(telefoneDTO.getNr_telefone());
         telefoneView.setNr_ddd(telefoneDTO.getNr_ddd());
-        telefoneView.setEnderecoView(telefoneDTO.getEnderecoView());
         return telefoneView;
     }
 
@@ -75,7 +74,6 @@ public class TelefoneService {
         telefoneDTO.setId_telefone(telefoneView.getId_telefone());
         telefoneDTO.setTp_contato(telefoneView.getTp_contato());
         telefoneDTO.setNr_telefone(telefoneView.getNr_telefone());
-        telefoneDTO.setEnderecoView(telefoneView.getEnderecoView());
         telefoneDTO.setNr_ddd(telefoneView.getNr_ddd());
         return telefoneDTO;
     }

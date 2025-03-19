@@ -15,7 +15,7 @@ import java.util.UUID;
 public class PlanoService {
     private final PlanoRepository planoRepository;
 
-    public PlanoView salvar(PlanoDTO planoDTO) {
+    public PlanoDTO salvar(PlanoDTO planoDTO) {
         PlanoView planoView = toEntity(planoDTO);
         if (planoDTO.getId_plano() == null) {
             planoView = planoRepository.save(planoView);
@@ -53,7 +53,6 @@ public class PlanoService {
         planoView.setId_plano(planoDTO.getId_plano());
         planoView.setTp_plano(planoDTO.getTp_plano());
         planoView.setNr_carteirinha(planoDTO.getNr_carteirinha());
-        planoView.setTipo_plano(planoDTO.getTipo_plano());
         return planoView;
     }
 
@@ -62,7 +61,6 @@ public class PlanoService {
         planoDTO.setId_plano(planoView.getId_plano());
         planoDTO.setTp_plano(planoView.getTp_plano());
         planoDTO.setNr_carteirinha(planoView.getNr_carteirinha());
-        planoDTO.setTipo_plano(planoView.getTipo_plano());
         return planoDTO;
     }
 }

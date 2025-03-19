@@ -5,6 +5,8 @@ import br.com.fiap.ProjetoSinistro.dto.ResultadoDTO;
 import br.com.fiap.ProjetoSinistro.repositorios.RegiaoRepository;
 import br.com.fiap.ProjetoSinistro.view.RegiaoView;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
+@RequestMapping
+@AllArgsConstructor
+@Log
 public class RegiaoController {
 
     @Autowired

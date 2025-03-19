@@ -59,10 +59,6 @@ public class PacienteService {
         pacienteView.setTp_sexo(pacienteDTO.getTp_sexo());
         pacienteView.setNr_cpf(pacienteDTO.getNr_cpf());
         pacienteView.setNr_rg(pacienteDTO.getNr_rg());
-        pacienteView.setPlano(pacienteDTO.getPlano());
-        pacienteView.setUsuario(pacienteDTO.getUsuario());
-        pacienteView.setTelefone(pacienteDTO.getTelefone());
-        pacienteView.setResponsavel_paciente(pacienteDTO.getResponsavel_paciente());
         return pacienteView;
     }
 
@@ -73,10 +69,6 @@ public class PacienteService {
         pacienteDTO.setNr_idade(pacienteView.getNr_idade());
         pacienteDTO.setTp_sexo(pacienteView.getTp_sexo());
         pacienteDTO.setNr_cpf(pacienteView.getNr_cpf());
-        pacienteDTO.setPlano(pacienteView.getPlano());
-        pacienteDTO.setUsuario(pacienteView.getUsuario());
-        pacienteDTO.setTelefone(pacienteView.getTelefone());
-        pacienteDTO.setResponsavel_paciente(pacienteView.getResponsavel_paciente());
         pacienteDTO.setNr_rg(pacienteView.getNr_rg());
         return pacienteDTO;
     }

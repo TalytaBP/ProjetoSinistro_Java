@@ -7,12 +7,16 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
+
+import lombok.Data;
 import lombok.ToString;
+import org.springframework.hateoas.RepresentationModel;
 
 @ToString
 @Entity
 @Table(name = "ENDERECO")
-public class EnderecoView {
+@Data
+public class EnderecoView extends RepresentationModel<EnderecoView> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

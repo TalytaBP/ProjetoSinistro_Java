@@ -6,13 +6,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 import lombok.ToString;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.util.UUID;
 
 @ToString
 @Entity
 @Table (name = "TELEFONE")
-public class TelefoneView {
+@Data
+public class TelefoneView extends RepresentationModel<TelefoneView> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

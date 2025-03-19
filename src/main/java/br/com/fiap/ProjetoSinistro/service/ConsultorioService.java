@@ -51,14 +51,12 @@ public class ConsultorioService {
     private static ConsultorioView toEntity(ConsultorioDTO consultorioDTO) {
         ConsultorioView consultorioView = new ConsultorioView();
         consultorioView.setId_consultorio(consultorioDTO.getId_consultorio());
-        consultorioView.setProfissional(consultorioDTO.getProfissional());
         return consultorioView;
     }
 
     private static ConsultorioDTO toDto(ConsultorioView consultorioView) {
         ConsultorioDTO consultorioDTO = new ConsultorioDTO();
         consultorioDTO.setId_consultorio(consultorioView.getId_consultorio());
-        consultorioDTO.setProfissional(consultorioView.getProfissional());
         return consultorioDTO;
     }
 }

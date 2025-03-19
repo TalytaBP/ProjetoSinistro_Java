@@ -6,13 +6,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 import lombok.ToString;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.util.UUID;
 
 @ToString
 @Entity
 @Table(name = "PLANO")
-public class PlanoView {
+@Data
+public class PlanoView extends RepresentationModel<PlanoView> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
