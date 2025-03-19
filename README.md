@@ -8,9 +8,9 @@ Projeto Sinistro
 
 ## 2. Nome completo dos integrantes
 
-* Jhemysson Moura Vieira - reponsavel por .Net e IOT;
+* Jhemysson Moura Vieira - reponsavel por .Net, IOT e Cloud;
 * Robson Apparecido dos Santos - responsavel por  Database e Mobile; 
-* Talyta Botelho Perrotti - responsável por Java Advanced, QA e Cloud;
+* Talyta Botelho Perrotti - responsável por Java Advanced, QA e .Net;
 
 ## 3. Imagens dos diagramas 
 
