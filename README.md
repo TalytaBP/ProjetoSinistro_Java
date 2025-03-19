@@ -2,6 +2,15 @@
 
  <img src="https://img.shields.io/badge/status-desenvolvimento-green?style=for-the-badge">
 
+ ## Tecnologias
+<div>
+  <img src="https://img.shields.io/badge/Java-orange?style=flat&logo=java&logoColor-black">
+  <img loading="lazy" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" width="22" background-color="orange" alt="Java Logo">
+  <img src="https://img.shields.io/badge/Spring-Boot-blue?style=flat&logo=springboot&logoColor-black">
+   <img src="https://img.shields.io/badge/Thymeleaf-pink?style=flat&logo=thymeleaf&logoColor-black">
+  
+</div>
+
 ## 1. Nome da Aplicação
 
 Projeto Sinistro
@@ -66,14 +75,6 @@ Projeto Sinistro
 }
 
 ```
-## Tecnologias
-<div>
-  <img src="https://img.shields.io/badge/Java-orange?style=flat&logo=java&logoColor-black">
-  <img loading="lazy" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" width="22" background-color="orange" alt="Java Logo">
-  <img src="https://img.shields.io/badge/Spring-Boot-blue?style=flat&logo=springboot&logoColor-black">
-   <img src="https://img.shields.io/badge/Thymeleaf-pink?style=flat&logo=thymeleaf&logoColor-black">
-  
-</div>
 
 ## Colaboradores
 <div>
